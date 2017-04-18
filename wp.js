@@ -35,13 +35,12 @@ const wpFormatForAllInpower = 'aside'
 // Укажите s postLimit сколько последних постов проверять на wordpress блоге. 
 // Разунмно комбинируйте это со значением globalInterval - не указывайте слишком большее количество постов при слишком коротком интервале
 // Если блог-донор обновляется редко - указывайте неблольшой значение.
-const postLimit = 4
+const postLimit = 1
 
 // ИНТЕРВАЛ РАЗМЕЩЕНИЯ ПОСТОВ
 // Используйте разумно из расчета расписания указанного вами в CRON, а так же помните, что мимнимальный интервал
 // должен стоять мимним 5 минут - голос не разрешает размещать посты чаще. 
 const postInterval = 1000*60*5 
-//const postInterval = 10000
 
 
 // ПОДКЛЮЧЕНИЕ К GOLOS
@@ -178,7 +177,7 @@ wp.posts()
     const summ = g.length
     let n = 0
 
-    const posting = setInterval(() => {
+    let posting = () => {
       //console.log(g[n].tags)
       const terms = []
       const wptags = g[n].tags
@@ -224,19 +223,25 @@ wp.posts()
 		
 		// Дефолнтный автор - если ни один из вариантов выше не подходит
       default:
-        author.login = 'robot'
-        author.wif = '5b478c839e4cb0c941ff4eaeb7df40bdd68bd441afd444b9da'
+        author.login = ''
+        author.wif = ''
 
       }
 
       // Нужно проверить блог автора на golos.io на предмет наличия поста c такой же ссылкой и если такой пост уже есть:
       // Проверим нуждается он в обновлении или нет. Если на golos актуальная версия поста - пропустим этот и перейдем к следующему посту
-
-      golos.api.getContent(author.login, g[n].permlink, function (err, result) {
+		const permlink = g[n].permlink
+		
+				console.log(permlink)
+				console.log(author.login)
+				
+      golos.api.getContent(author.login, permlink, function (err, result) {
         if(err){
 				console.log('Ошибка: ', err);	
 				}
-        
+				
+     
+		
 		// isNew = true если поста с такой ссылкой в блоге на golos.io не было ранее. 
         const isNew = result.permlink === ''
         
@@ -248,7 +253,8 @@ wp.posts()
 
         // isUpdate = true если пост с такой ссылкой существует, но версия на WP свежее
         const isUpdate = result.permlink === g[n].permlink && golosTime < wpTime
-        
+        console.log(`Число - ${golosTime} больше чем ${wpTime}? Это новое? ${isNew}. Это обновление? ${isUpdate} Ссылка правильная? - ${g[n].permlink}`)
+		 
 
         // Осуществляем постинг в голос если такого поста не было ИЛИ если на WP свежая редакция поста - заменим ею старый пост на golos
         if (isNew || isUpdate) {
@@ -260,7 +266,7 @@ wp.posts()
           // 10000 для 50%/50% или 0 для 100% в СГ
           const percentSteemDollars = (g[n].format === wpFormatForAllInpower) ? 0 : 10000;
 
-          const permlink = g[n].permlink
+          
 
           // В этот массив мы запишем теги, превью, название приложения и формат данных. 
           const jsonMetadata = {
@@ -268,16 +274,15 @@ wp.posts()
             "image": [
               g[n].thumb
             ],
-			// Как хороший тон - укажем наименование нашего приложения, оно будет отображаться в json metadata
-            "app": "wordpress importer (vik)",
+			// Как хороший тон - ккажем наименование нашего приложения, оно будет отображаться в json metadata
+            "app": "Wordpress importer (vik)",
             "format": "html"
           }
-
+			
 		  
-		  console.log(maxAcceptedPayout)
-		  console.log(g[n].format)
+		 
 		  // Размещение поста
-          golos.broadcast.comment(
+        golos.broadcast.comment(
 			// Передача параметров 
             author.wif, '', topic, author.login, permlink, g[n].title, g[n].content, jsonMetadata,
 			
@@ -320,12 +325,16 @@ wp.posts()
 		  
 		  // Закрываем скрипт полностью и ждем когда его запустит по расписанию CRON
 		  setTimeout(() => {
+			  
 		  process.exit()
-		  },5000);
+		  },6000);
         }
 
       });
 	// Интервал с которым будут публиковаться посты 
-    }, postInterval);
+    }
+	
+posting()
+setInterval(posting, postInterval);
 
   });
