@@ -232,8 +232,7 @@ wp.posts()
       // Проверим нуждается он в обновлении или нет. Если на golos актуальная версия поста - пропустим этот и перейдем к следующему посту
 		const permlink = g[n].permlink
 		
-				console.log(permlink)
-				console.log(author.login)
+				
 				
       golos.api.getContent(author.login, permlink, function (err, result) {
         if(err){
