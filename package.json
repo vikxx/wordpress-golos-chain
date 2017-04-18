@@ -1,6 +1,6 @@
 {
   "name": "wordpress-golos-chain",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Плагин для импорта и синхронизации wordpress и golos.io блога",
   "main": "wp.js",
   "scripts": {
