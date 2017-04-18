@@ -4,7 +4,7 @@
   "description": "Плагин для импорта и синхронизации wordpress и golos.io блога",
   "main": "wp.js",
   "scripts": {
-    "wp": "node wp.js"
+    "start": "node wp.js"
   },
   "author": "vik",
   "license": "MIT",
