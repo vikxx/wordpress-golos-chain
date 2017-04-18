@@ -294,7 +294,8 @@ wp.posts()
 				}
 				
               // Установка параметров выплат для поста, отправляем с небольшой отсрочкой во избежание ошибок
-              setTimeout(() => {
+             if (!isUpdate) {
+			 setTimeout(() => {
                 golos.broadcast.commentOptions(
                   author.wif, author.login, permlink, maxAcceptedPayout, percentSteemDollars, true, true, [],
                   function (err, result) {
@@ -304,6 +305,7 @@ wp.posts()
                   });
 
               }, 1000);
+				}
 
             });
 			
