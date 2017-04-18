@@ -253,8 +253,7 @@ wp.posts()
 
         // isUpdate = true если пост с такой ссылкой существует, но версия на WP свежее
         const isUpdate = result.permlink === g[n].permlink && golosTime < wpTime
-        console.log(`Число - ${golosTime} больше чем ${wpTime}? Это новое? ${isNew}. Это обновление? ${isUpdate} Ссылка правильная? - ${g[n].permlink}`)
-		 
+        	 
 
         // Осуществляем постинг в голос если такого поста не было ИЛИ если на WP свежая редакция поста - заменим ею старый пост на golos
         if (isNew || isUpdate) {
