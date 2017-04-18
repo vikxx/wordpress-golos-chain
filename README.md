@@ -1,23 +1,8 @@
 # wordpress-golos-chain
-Плагин для импорта и синхронизации wordpress записей в golos.io
+### Плагин для импорта и синхронизации wordpress записей в golos.io
 
 https://golos.io/x/@vik/wordpress
 
- 
-
-Установка
-`git clone https://github.com/vikxx/wordpress-golos-chain.git`
-
-
-
-
- 
-
-# wordpress-golos-chain
-
-
-* * *
-Плагин для импорта и синхронизации wordpress записей в golos.io или steemit.com
 
 # Установка
 
