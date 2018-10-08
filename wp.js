@@ -233,7 +233,7 @@ wp.posts()
 		
 				
 				
-      golos.api.getContent(author.login, permlink,0 function (err, result) {
+      golos.api.getContent(author.login, permlink,0, function (err, result) {
         if(err){
 				console.log('Ошибка: ', err);	
 				}
