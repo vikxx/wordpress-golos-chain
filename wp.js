@@ -6,8 +6,7 @@
 //│ │ │ │ │ 
 //│ │ │ │ │ 
 //│ │ │ │ │ 
-
-const golos = require('steem')
+golos = require('golos-js')
 const WP = require('wordpress-rest-api');
 
 // НАСТРОЙКИ
@@ -234,7 +233,7 @@ wp.posts()
 		
 				
 				
-      golos.api.getContent(author.login, permlink, function (err, result) {
+      golos.api.getContent(author.login, permlink,0 function (err, result) {
         if(err){
 				console.log('Ошибка: ', err);	
 				}
