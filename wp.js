@@ -6,7 +6,7 @@
 //│ │ │ │ │ 
 //│ │ │ │ │ 
 //│ │ │ │ │ 
-golos = require('golos-js')
+const golos = require('golos-js')
 const WP = require('wordpress-rest-api');
 
 // НАСТРОЙКИ
