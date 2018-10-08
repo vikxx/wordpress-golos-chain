@@ -62,7 +62,7 @@ Wordpress самая популярная блоговая платформа в
 ` cd wordpress-golos-chain`
 
  Устанавливаем WP API
-` npm install --save wordpress-rest-api`
+` npm install --save wpapi`
 
  Устанавливаем STEEM API
 ` npm install steem`
