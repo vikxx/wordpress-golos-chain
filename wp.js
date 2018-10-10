@@ -7,7 +7,7 @@
 //│ │ │ │ │ 
 //│ │ │ │ │ 
 const golos = require('golos-js')
-const WP = require('wordpress-rest-api');
+const WP = require('wpapi'); // wordpress-rest-api update to wp-api. Run npm i wpapi
 
 // НАСТРОЙКИ
 // Ниже необходимо указать путь до вашего wp-json директивы вашего WORDPRESS 
