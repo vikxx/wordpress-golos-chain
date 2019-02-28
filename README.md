@@ -13,7 +13,7 @@ https://golos.io/x/@vik/wordpress
 ` cd wordpress-golos-chain`
 
  Устанавливаем WP API
-` npm install --save wordpress-rest-api`
+` npm install --save wpapi`
 
  Устанавливаем STEEM API
 ` npm install steem`
